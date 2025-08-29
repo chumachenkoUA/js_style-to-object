@@ -3,26 +3,26 @@
 /**
  * @param {string} sourceString
  *
- * @return {accect}
+ * @return {object}
  */
-function convertToaccect(sourceString) {
+function convertToObject(sourceString) {
   return sourceString
     .split(';')
     .map((line) => line.trim())
     .filter((line) => line.length > 0)
-    .reduce((acc, line) => {
+    .reduce((styleObject, line) => {
       const [key, ...other] = line.split(':');
 
       if (!key.trim() || other.length === 0) {
-        return acc;
+        return styleObject;
       }
 
       const value = other.join(':');
 
-      acc[key.trim()] = value.trim();
+      styleObject[key.trim()] = value.trim();
 
-      return acc;
+      return styleObject;
     }, {});
 }
 
-module.exports = convertToaccect;
+module.exports = convertToObject;
